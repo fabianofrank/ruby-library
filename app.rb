@@ -28,8 +28,7 @@ class App
     name = gets.chomp.strip.to_s
     print 'Parent Permission [Y/N]: '
     parent_permission = gets.chomp.strip.to_s == 'y'
-    student = Student.new(age, name, parent_permission: parent_permission)
-    @people.push(student)
+    @people << Student.new(age, name, parent_permission: parent_permission)
     puts 'Student created successfully'
   end
 
@@ -40,14 +39,13 @@ class App
     name = gets.chomp.strip.to_s
     print 'Specialization: '
     specialization = gets.chomp.strip.to_s
-    teacher = Teacher.new(age, name, specialization)
-    @people.push(teacher)
+    @people << Teacher.new(age, name, specialization)
     puts 'Teacher created successfully'
   end
 
   def list_people
-    @people.each do |person|
-      puts "[#{person.class.name}] Name: #{person.name} ID: #{person.id} Age: #{person.age}\n"
+    @people.each_with_index do |person, index|
+      puts "\n#{index}) [#{person.class.name}] Name: #{person.name} ID: #{person.id} Age: #{person.age}\n"
     end
   end
 
@@ -56,26 +54,21 @@ class App
     title = gets.chomp.strip.to_s
     print 'Author: '
     author = gets.chomp.strip.to_s
-    book = Book.new(title, author)
-    @books.push(book)
+    @books << Book.new(title, author)
     puts 'Book created successfully'
   end
 
   def list_books
-    @books.each do |book|
-      puts "Title: #{book.title}\nAuthor: #{book.author}\n\n"
+    @books.each_with_index do |book, index|
+      puts "\n#{index}) Title: #{book.title}, Author: #{book.author}\n"
     end
   end
 
   def create_rental
     puts 'Select a book from the following list by number'
-    @books.each_with_index do |book, index|
-      puts "\n#{index}) Title: #{book.title}, Author: #{book.author}\n"
-    end
+    list_books
     select_book = gets.chomp.strip.to_i
-    @people.each_with_index do |person, index|
-      puts "\n#{index}) [#{person.class.name}] Name: #{person.name} ID: #{person.id} Age: #{person.age}\n"
-    end
+    list_people
     select_person = gets.chomp.strip.to_i
     print 'Date [YYYY/MM/DD]: '
     date = gets.chomp.strip.to_s
