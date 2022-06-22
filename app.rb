@@ -91,5 +91,6 @@ class App
   def save_data
     save_people
     save_books
+    save_rentals
   end
 end

@@ -46,4 +46,22 @@ module DataStorage
     end
     data
   end
+
+  def save_rentals
+    data = []
+    @rentals.each do |rental|
+      data << { id: rental.person.id, date: rental.date, person: rental.person, book: rental.book }
+      File.write('rentals.json', JSON.generate(data))
+    end
+  end
+
+  def load_rentals
+    data = []
+    unless File.zero?('rentals.json')
+      JSON.parse(File.read('rentals.json')).each do |_rental|
+        puts load_people['person']['id']
+      end
+    end
+    data
+  end
 end
