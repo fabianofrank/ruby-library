@@ -2,6 +2,24 @@ require_relative 'app'
 require 'json'
 
 module DataStorage
+  def save_books
+    data = []
+    @books.each do |book|
+      data << { title: book.title, author: book.author }
+      File.write('books.json', JSON.generate(data))
+    end
+  end
+
+  def load_books
+    data = []
+    unless File.zero?('books.json')
+      JSON.parse(File.read('books.json')).each do |book|
+        data << Book.new(book['title'], book['author'])
+      end
+    end
+    data
+  end
+
   def save_people
     data = []
     @people.each do |person|
