@@ -7,6 +7,8 @@ class Main
     puts "Welcome to School Library App!\n"
   end
 
+  include DataStorage
+
   def interface
     puts "\nPlease choose an option by entering a number:"
     puts '1 - List all books'
@@ -31,6 +33,7 @@ class Main
       when 6 then @app.list_rental
       else
         puts "Don't say goodbye, bye, bye..."
+        @app.save_data
         exit
       end
     end

@@ -2,13 +2,16 @@ require_relative 'book'
 require_relative 'student'
 require_relative 'teacher'
 require_relative 'rental'
+require_relative 'storage'
 
 class App
   def initialize
-    @books = []
-    @people = []
+    @books = load_books
+    @people = load_people
     @rentals = []
   end
+
+  include DataStorage
 
   def create_person
     puts 'Do you want to create a student (1) os teacher (2)? [Input the number]:'
@@ -83,5 +86,10 @@ class App
     @rentals.each do |rental|
       puts "Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author}" if rental.person.id == id
     end
+  end
+
+  def save_data
+    save_people
+    save_books
   end
 end
