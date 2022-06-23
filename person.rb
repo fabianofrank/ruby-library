@@ -1,6 +1,6 @@
 require_relative 'nameable'
 require_relative 'decorator'
-require_relative 'capitalize_decorator'
+require_relative 'corrector'
 require_relative 'trimmer_decorator'
 
 class Person < Nameable
@@ -14,6 +14,7 @@ class Person < Nameable
     @name = name
     @parent_permission = parent_permission
     @rental = []
+    @corrector = Corrector.new
   end
 
   def of_age?
@@ -25,12 +26,11 @@ class Person < Nameable
   end
 
   def correct_name
-    @name
+    @name = @corrector.correct_name(name)
   end
 
-  def add_rental(rental)
-    @rental.push(rental)
-    rental.person = self
+  def add_rental(date, book)
+    Rental.new(date, self, book)
   end
 
   private :of_age?
