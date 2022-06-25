@@ -22,14 +22,18 @@ To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 You must have Ruby installed on your computer.
+
 ### Setup
-Clone this repository using `git clone https://github.com/fabianofrank/ruby-oop-library.git`
+Clone this repository using `git clone https://github.com/fabianofrank/ruby-library.git`
 
 ### Navigate to the correct folder
-On your terminal, run: `cd ruby-oop-library`.
+On your terminal, run: `cd ruby-library`.
 
 ### To run the code
 On your terminal, run: `ruby person.rb`.
+
+### Run tests
+In the termina;, run: `rspec`
 
 ## Author
 
